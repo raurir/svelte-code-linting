@@ -1,0 +1,10 @@
+.venv
+venv
+node_modules
+
+*.html
+*.yaml
+*.yml
+*.md
+*.min.*
+*.chunk.*

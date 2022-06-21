@@ -1,0 +1,14 @@
+{
+    "extends": "@tsconfig/svelte/tsconfig.json",
+    "include": ["src/**/*"],
+    "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+    "compilerOptions": {
+        "strict": true,
+        "isolatedModules": false,
+        "exactOptionalPropertyTypes": true,
+        "noImplicitReturns": true,
+        "baseUrl": "./",
+        "lib": ["es5", "es6", "es2018", "dom", "DOM.Iterable"],
+        "types": ["node", "vite/client"]
+    }
+}

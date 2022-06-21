@@ -1,0 +1,10 @@
+{
+  "svelteAllowShorthand": true,
+  "svelteIndentScriptAndStyle": true,
+  "svelteSortOrder": "options-scripts-markup-styles",
+  "svelteStrictMode": false,
+  "overrides": [
+    { "files": ["*.svelte"], "options": { "parser": "svelte" } },
+    { "files": ["*.ts"], "options": { "parser": "typescript" } }
+  ]
+}
