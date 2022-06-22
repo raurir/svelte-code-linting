@@ -4,9 +4,11 @@ Some issues with Svelte + Linting + Testing
 
 ## Linting
 
-Saving in sublime causes the prettier autoformat to exponentially take longer depending on the file size.
+Saving in sublime causes the prettier autoformat to exponentially take longer depending on the file size. I have experienced more than a minute for some files!
 
-- video
+Video capture of lag.
+
+https://user-images.githubusercontent.com/383190/174916858-ebb89ab4-ac0e-4d51-961d-0ab2a7684af0.mov
 
 Whereas, running prettier via the command line is fast:
 
@@ -113,9 +115,9 @@ Require stack:
     at /working-folder/node_modules/svelte-jester/dist/transformer.cjs:77:141
     at processTicksAndRejections (internal/process/task_queues.js:95:5)
 Failed to collect coverage from /working-folder/src/ManyStyles.svelte
-
+```
 -- ERROR LOGS REMOVED
-
+```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------------|---------|----------|---------|---------|-------------------
@@ -132,16 +134,16 @@ Ran all test suites.
 
 ### Incorrect code coverage
 
-Running `yarn test:coverage poor` (only running a poor test):
+Running `yarn test:coverage poor` (only running a [poor test](https://github.com/raurir/svelte-code-linting/blob/master/src/AllCode.poor.test.ts)):
 
 ```bash
 $ jest --coverage --verbose poor
  PASS  src/AllCode.poor.test.ts
   AllCode poor
     ✓ runs tests with poor coverage (10 ms)
-
+```
 -- ERROR LOGS REMOVED
-
+```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------------|---------|----------|---------|---------|-------------------
@@ -156,19 +158,20 @@ Ran all test suites matching /poor/i.
 ✨  Done in 1.81s.
 ```
 
-- screen capture of poor results
+#### screen capture of poor results
+<img width="710" alt="test-coverage-poor" src="https://user-images.githubusercontent.com/383190/174917217-59e14c94-cd3a-4825-a370-d54b7e29e704.png">
 
 
-Running `yarn test:coverage complete` (only running a complete test):
+Running `yarn test:coverage complete` (only running a [complete test](https://github.com/raurir/svelte-code-linting/blob/master/src/AllCode.complete.test.ts)):
 
 ```bash
 $ jest --coverage --verbose complete
  PASS  src/AllCode.complete.test.ts
   AllCode complete
     ✓ runs tests with full coverage (12 ms)
-
+```
 -- ERROR LOGS REMOVED
-
+```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------------|---------|----------|---------|---------|-------------------
@@ -183,4 +186,6 @@ Ran all test suites matching /complete/i.
 ✨  Done in 2.18s.
 ```
 
-- scrren capture of better but innacurate results
+#### screen capture of better but innacurate results
+<img width="710" alt="test-coverage-complete" src="https://user-images.githubusercontent.com/383190/174917214-2c868d90-6c20-45e4-93c0-317312cc148a.png">
+
