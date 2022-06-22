@@ -1,1 +1,186 @@
-# demo
+# ❤️ Svelte
+
+Some issues with Svelte + Linting + Testing
+
+## Linting
+
+Saving in sublime causes the prettier autoformat to exponentially take longer depending on the file size.
+
+- video
+
+Whereas, running prettier via the command line is fast:
+
+```bash
+$ prettier --plugin-search-dir=. './src/**/*.{svelte,ts}' --write
+src/AllCode.complete.test.ts 180ms
+src/AllCode.poor.test.ts 4ms
+src/AllCode.svelte 68ms
+src/App.svelte 2ms
+src/Large.svelte 22ms
+src/main.ts 3ms
+src/ManyStyles.svelte 15ms
+src/Small.svelte 8ms
+✨  Done in 0.52s.
+```
+
+## Testing
+
+running `yarn test` works:
+
+```bash
+$ jest src
+ PASS  src/AllCode.poor.test.ts
+ PASS  src/AllCode.complete.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.47 s, estimated 2 s
+Ran all test suites matching /src/i.
+✨  Done in 2.13s.
+```
+
+### Errors running test:coverage for untested files
+
+running `yarn test:coverage` kind of works but mostly not:
+
+```bash
+$ jest --coverage --verbose
+ PASS  src/AllCode.complete.test.ts
+  AllCode complete
+    ✓ runs tests with full coverage (13 ms)
+
+ PASS  src/AllCode.poor.test.ts
+  AllCode poor
+    ✓ runs tests with poor coverage (2 ms)
+
+Running coverage on untested files...Failed to collect coverage from /working-folder/src/App.svelte
+ERROR: Cannot find module 'file:///working-folder/svelte.config.js'
+Require stack:
+- /working-folder/node_modules/svelte-jester/dist/transformer.cjs
+- /working-folder/node_modules/jest-util/build/requireOrImportModule.js
+- /working-folder/node_modules/jest-util/build/index.js
+- /working-folder/node_modules/@jest/transform/build/shouldInstrument.js
+- /working-folder/node_modules/@jest/transform/build/ScriptTransformer.js
+- /working-folder/node_modules/@jest/transform/build/index.js
+- /working-folder/node_modules/@jest/reporters/build/generateEmptyCoverage.js
+- /working-folder/node_modules/@jest/reporters/build/CoverageWorker.js
+- /working-folder/node_modules/jest-worker/build/workers/processChild.js
+STACK: Error: Cannot find module 'file:///working-folder/svelte.config.js'
+Require stack:
+- /working-folder/node_modules/svelte-jester/dist/transformer.cjs
+- /working-folder/node_modules/jest-util/build/requireOrImportModule.js
+- /working-folder/node_modules/jest-util/build/index.js
+- /working-folder/node_modules/@jest/transform/build/shouldInstrument.js
+- /working-folder/node_modules/@jest/transform/build/ScriptTransformer.js
+- /working-folder/node_modules/@jest/transform/build/index.js
+- /working-folder/node_modules/@jest/reporters/build/generateEmptyCoverage.js
+- /working-folder/node_modules/@jest/reporters/build/CoverageWorker.js
+- /working-folder/node_modules/jest-worker/build/workers/processChild.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:889:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:745:27)
+    at Module.require (internal/modules/cjs/loader.js:961:19)
+    at require (internal/modules/cjs/helpers.js:92:18)
+    at /working-folder/node_modules/svelte-jester/dist/transformer.cjs:77:141
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+Failed to collect coverage from /working-folder/src/Small.svelte
+ERROR: Cannot find module 'file:///working-folder/svelte.config.js'
+Require stack:
+- /working-folder/node_modules/svelte-jester/dist/transformer.cjs
+- /working-folder/node_modules/jest-util/build/requireOrImportModule.js
+- /working-folder/node_modules/jest-util/build/index.js
+- /working-folder/node_modules/@jest/transform/build/shouldInstrument.js
+- /working-folder/node_modules/@jest/transform/build/ScriptTransformer.js
+- /working-folder/node_modules/@jest/transform/build/index.js
+- /working-folder/node_modules/@jest/reporters/build/generateEmptyCoverage.js
+- /working-folder/node_modules/@jest/reporters/build/CoverageWorker.js
+- /working-folder/node_modules/jest-worker/build/workers/processChild.js
+STACK: Error: Cannot find module 'file:///working-folder/svelte.config.js'
+Require stack:
+- /working-folder/node_modules/svelte-jester/dist/transformer.cjs
+- /working-folder/node_modules/jest-util/build/requireOrImportModule.js
+- /working-folder/node_modules/jest-util/build/index.js
+- /working-folder/node_modules/@jest/transform/build/shouldInstrument.js
+- /working-folder/node_modules/@jest/transform/build/ScriptTransformer.js
+- /working-folder/node_modules/@jest/transform/build/index.js
+- /working-folder/node_modules/@jest/reporters/build/generateEmptyCoverage.js
+- /working-folder/node_modules/@jest/reporters/build/CoverageWorker.js
+- /working-folder/node_modules/jest-worker/build/workers/processChild.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:889:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:745:27)
+    at Module.require (internal/modules/cjs/loader.js:961:19)
+    at require (internal/modules/cjs/helpers.js:92:18)
+    at /working-folder/node_modules/svelte-jester/dist/transformer.cjs:77:141
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+Failed to collect coverage from /working-folder/src/ManyStyles.svelte
+
+-- ERROR LOGS REMOVED
+
+----------------|---------|----------|---------|---------|-------------------
+File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------------|---------|----------|---------|---------|-------------------
+All files       |     100 |    33.33 |     100 |     100 |
+ AllCode.svelte |     100 |    33.33 |     100 |     100 | 20-29
+----------------|---------|----------|---------|---------|-------------------
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.235 s
+Ran all test suites.
+✨  Done in 1.62s.
+```
+
+### Incorrect code coverage
+
+Running `yarn test:coverage poor` (only running a poor test):
+
+```bash
+$ jest --coverage --verbose poor
+ PASS  src/AllCode.poor.test.ts
+  AllCode poor
+    ✓ runs tests with poor coverage (10 ms)
+
+-- ERROR LOGS REMOVED
+
+----------------|---------|----------|---------|---------|-------------------
+File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------------|---------|----------|---------|---------|-------------------
+All files       |   33.33 |    33.33 |     100 |   42.85 |
+ AllCode.svelte |   33.33 |    33.33 |     100 |   42.85 | 6-14,21,25,29
+----------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.275 s
+Ran all test suites matching /poor/i.
+✨  Done in 1.81s.
+```
+
+- screen capture of poor results
+
+
+Running `yarn test:coverage complete` (only running a complete test):
+
+```bash
+$ jest --coverage --verbose complete
+ PASS  src/AllCode.complete.test.ts
+  AllCode complete
+    ✓ runs tests with full coverage (12 ms)
+
+-- ERROR LOGS REMOVED
+
+----------------|---------|----------|---------|---------|-------------------
+File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------------|---------|----------|---------|---------|-------------------
+All files       |     100 |    33.33 |     100 |     100 |
+ AllCode.svelte |     100 |    33.33 |     100 |     100 | 20-29
+----------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.311 s
+Ran all test suites matching /complete/i.
+✨  Done in 2.18s.
+```
+
+- scrren capture of better but innacurate results
