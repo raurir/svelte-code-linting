@@ -42,6 +42,24 @@
   ];
 </script>
 
-{#each paths as { label, slug }}
-  <a href={slug}>{label}</a>
+{#each paths as { label, slug }, index}
+  <a class={`colour-${index % 4}`} href={slug}>{label} </a>
 {/each}
+
+<style>
+  a {
+    display: block;
+  }
+  .colour-0 {
+    background-color: red;
+  }
+  .colour-1 {
+    background-color: blue;
+  }
+  .colour-2 {
+    background-color: green;
+  }
+  .colour-3 {
+    background-color: grey;
+  }
+</style>
