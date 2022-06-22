@@ -1,6 +1,6 @@
 # ❤️ Svelte
 
-Some issues with Svelte regarding Autoformatting with Sublime + Testing with Jest Coverage
+Some issues with Svelte regarding Autoformatting with JsPrettier in Sublime + Collecting Test Coverage with Jest
 
 ## Autoformatting
 
