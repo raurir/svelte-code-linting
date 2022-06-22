@@ -6,8 +6,23 @@ Some issues with Svelte + Linting + Testing
 
 Saving in sublime causes the prettier autoformat to exponentially take longer depending on the file size. I have experienced more than a minute for some files!
 
-Video capture of lag.
+### Lint settings
 
+Sublime is using `prettier-plugin-svelte`.
+
+Contents of `JSPrettier.sublime-settings`:
+```js
+{
+	"auto_format_on_save": true,
+	"custom_file_extensions": ["svelte"],
+	"additional_cli_args": {
+		"--config-precedence": "file-override",
+		"--plugin-search-dir": "/working-folder/app"
+	}
+}
+```
+
+#### Video capture of lag
 https://user-images.githubusercontent.com/383190/174916858-ebb89ab4-ac0e-4d51-961d-0ab2a7684af0.mov
 
 Whereas, running prettier via the command line is fast:
@@ -116,7 +131,7 @@ Require stack:
     at processTicksAndRejections (internal/process/task_queues.js:95:5)
 Failed to collect coverage from /working-folder/src/ManyStyles.svelte
 ```
--- ERROR LOGS REMOVED
+`-- ERROR LOGS REMOVED`
 ```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
@@ -142,7 +157,7 @@ $ jest --coverage --verbose poor
   AllCode poor
     ✓ runs tests with poor coverage (10 ms)
 ```
--- ERROR LOGS REMOVED
+`-- ERROR LOGS REMOVED`
 ```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
@@ -170,7 +185,7 @@ $ jest --coverage --verbose complete
   AllCode complete
     ✓ runs tests with full coverage (12 ms)
 ```
--- ERROR LOGS REMOVED
+`-- ERROR LOGS REMOVED`
 ```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
@@ -188,4 +203,6 @@ Ran all test suites matching /complete/i.
 
 #### screen capture of better but innacurate results
 <img width="710" alt="test-coverage-complete" src="https://user-images.githubusercontent.com/383190/174917214-2c868d90-6c20-45e4-93c0-317312cc148a.png">
+
+Note svelte html section shows incorrect coverage, all lines should be covered.
 
