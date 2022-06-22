@@ -1,8 +1,8 @@
 # ❤️ Svelte
 
-Some issues with Svelte + Linting + Testing
+Some issues with Svelte regarding Autoformatting with Sublime + Testing with Jest Coverage
 
-## Linting
+## Autoformatting
 
 Saving in sublime causes the prettier autoformat to exponentially take longer depending on the file size. I have experienced more than a minute for some files!
 
@@ -10,7 +10,7 @@ Saving in sublime causes the prettier autoformat to exponentially take longer de
 
 Sublime is using `prettier-plugin-svelte`.
 
-Contents of `JSPrettier.sublime-settings`:
+Contents of `JsPrettier.sublime-settings`:
 ```js
 {
 	"auto_format_on_save": true,
@@ -131,7 +131,7 @@ Require stack:
     at processTicksAndRejections (internal/process/task_queues.js:95:5)
 Failed to collect coverage from /working-folder/src/ManyStyles.svelte
 ```
-`-- ERROR LOGS REMOVED`
+`COMPLETE ERROR STACK REMOVED`
 ```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
@@ -157,7 +157,7 @@ $ jest --coverage --verbose poor
   AllCode poor
     ✓ runs tests with poor coverage (10 ms)
 ```
-`-- ERROR LOGS REMOVED`
+`COMPLETE ERROR STACK REMOVED`
 ```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
@@ -185,7 +185,7 @@ $ jest --coverage --verbose complete
   AllCode complete
     ✓ runs tests with full coverage (12 ms)
 ```
-`-- ERROR LOGS REMOVED`
+`COMPLETE ERROR STACK REMOVED`
 ```bash
 ----------------|---------|----------|---------|---------|-------------------
 File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
